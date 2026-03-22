@@ -1,0 +1,15 @@
+fastapi
+uvicorn[standard]
+motor
+pymongo
+pydantic[email]
+pydantic-settings
+bcrypt
+PyJWT
+python-dotenv
+python-multipart
+google-genai
+httpx
+pymupdf
+chromadb
+langchain-text-splitters
