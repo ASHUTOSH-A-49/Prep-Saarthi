@@ -85,8 +85,12 @@
 
 from fastapi import APIRouter, File, UploadFile, Depends, HTTPException
 from typing import List
+<<<<<<< HEAD
 from datetime import datetime, timedelta
 from app.models.srs import SRSRecordSchema
+=======
+from datetime import datetime
+>>>>>>> 54e60b608fdf90d033ad8adf13a3597d63cc4b10
 from pydantic import BaseModel
 from app.core.dependencies import get_current_user
 from app.services.rag import (
@@ -179,13 +183,18 @@ async def upload_document(file: UploadFile = File(...), current_user: dict = Dep
 @router.post("/ask")
 async def ask_question(request: AskRequest, current_user: dict = Depends(get_current_user)):
     user_id = current_user["user_id"]
+<<<<<<< HEAD
     
     answer_result = await generate_vault_answer(
+=======
+    return await generate_vault_answer(
+>>>>>>> 54e60b608fdf90d033ad8adf13a3597d63cc4b10
         question=request.question,
         active_doc_ids=request.active_doc_ids,
         socratic_mode=request.socratic_mode,
         user_id=user_id
     )
+<<<<<<< HEAD
     
     db = get_database()
     now = datetime.utcnow()
@@ -248,6 +257,8 @@ async def ask_question(request: AskRequest, current_user: dict = Depends(get_cur
     await db.vault_chat_logs.insert_one(chat_log)
     
     return answer_result
+=======
+>>>>>>> 54e60b608fdf90d033ad8adf13a3597d63cc4b10
 
 @router.post("/generate-practice")
 async def generate_practice(request: PracticeRequest, current_user: dict = Depends(get_current_user)):

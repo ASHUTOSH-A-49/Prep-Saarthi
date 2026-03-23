@@ -6,11 +6,17 @@ export default function Sidebar() {
   const navItems = [
     { name: 'Dashboard', icon: 'dashboard', path: '/' },
     { name: 'Vault', icon: 'inventory_2', path: '/vault' },
+<<<<<<< HEAD
     { name: 'Revision', icon: 'monitoring', path: '/revision' },
     { name: 'Quiz', icon: 'quiz', path: '/quiz' },
     { name: 'Arena', icon: 'sports_esports', path: '/arena' },
     { name: 'Mentor', icon: 'psychology', path: '/mentor' },
     { name: 'Proctoring', icon: 'security', path: '/proctored' },
+=======
+    { name: 'Quiz', icon: 'quiz', path: '/quiz' },
+    { name: 'Arena', icon: 'sports_esports', path: '/arena' },
+    { name: 'Mentor', icon: 'psychology', path: '/mentor' },
+>>>>>>> 54e60b608fdf90d033ad8adf13a3597d63cc4b10
   ];
 
   return (

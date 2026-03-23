@@ -668,7 +668,10 @@ async def extract_pdf_topics(pdf_text: str) -> list[str]:
     return []
 
 async def generate_vault_mcqs(doc_ids: list[str], track: str) -> list[dict]:
+<<<<<<< HEAD
     if not doc_ids: return FALLBACK_MCQS
+=======
+>>>>>>> 54e60b608fdf90d033ad8adf13a3597d63cc4b10
     # Query ChromaDB to get all text chunks for the checked PDFs
     results = collection.get(where={"doc_id": {"$in": doc_ids}})
     
@@ -735,6 +738,7 @@ async def generate_vault_mcqs(doc_ids: list[str], track: str) -> list[dict]:
             logger.warning(f"Attempt {attempt + 1} failed: {str(e)}")
             await asyncio.sleep(1)
             
+<<<<<<< HEAD
     return FALLBACK_MCQS
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -865,4 +869,6 @@ async def generate_adaptive_pyqs(topic: str, past_mistakes: list[str], exam_trac
             logger.warning(f"Adaptive attempt {attempt+1} failed: {e}")
             await asyncio.sleep(1)
             
+=======
+>>>>>>> 54e60b608fdf90d033ad8adf13a3597d63cc4b10
     return FALLBACK_MCQS

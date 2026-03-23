@@ -1,6 +1,7 @@
 from pydantic import BaseModel, Field
 from datetime import datetime
 from typing import Optional
+<<<<<<< HEAD
 from app.models.common import PyObjectId
 
 class SRSRecordSchema(BaseModel):
@@ -15,4 +16,12 @@ class SRSRecordSchema(BaseModel):
     ease_factor: float = 2.5  # Standard SM-2 starting ease
     
     last_reviewed_date: Optional[datetime] = None
+=======
+
+class SRSRecordSchema(BaseModel):
+    user_id: str
+    topic: str
+    ease_factor: float = 2.5
+    interval: int = 0
+>>>>>>> 54e60b608fdf90d033ad8adf13a3597d63cc4b10
     next_review_date: datetime = Field(default_factory=datetime.utcnow)

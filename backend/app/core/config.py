@@ -21,6 +21,11 @@ class Settings(BaseSettings):
     GROQ_API_KEY: str = os.getenv("GROQ_API_KEY", "")
     
     YOUTUBE_API_KEY: str = os.getenv("YOUTUBE_API_KEY","")
+<<<<<<< HEAD
+=======
+    
+    SARVAM_API_KEY: str = os.getenv("SARVAM_API_KEY", "")
+>>>>>>> 54e60b608fdf90d033ad8adf13a3597d63cc4b10
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
