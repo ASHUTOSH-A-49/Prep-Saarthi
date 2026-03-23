@@ -1,22 +1,16 @@
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect, Query, status
 from app.core.security import get_current_user_ws
+from app.utils.activity import log_user_activity
 from app.core.database import get_database
 from app.services.arena import manager
-<<<<<<< HEAD
 from app.services.llm import generate_mcqs, generate_mcqs_from_context, generate_vault_mcqs, generate_adaptive_pyqs
-=======
-from app.services.llm import generate_mcqs, generate_mcqs_from_context, generate_vault_mcqs
->>>>>>> 54e60b608fdf90d033ad8adf13a3597d63cc4b10
 import asyncio
 import uuid
 import logging
 import random
 from bson import ObjectId
-<<<<<<< HEAD
 from datetime import datetime, timezone
 from app.utils.srs import calculate_next_review
-=======
->>>>>>> 54e60b608fdf90d033ad8adf13a3597d63cc4b10
 
 router = APIRouter(prefix="/ws", tags=["Arena"])
 logger = logging.getLogger(__name__)
@@ -83,7 +77,6 @@ async def websocket_arena(
     except asyncio.TimeoutError:
         pass
 
-<<<<<<< HEAD
     if initial_data and initial_data.get("type", "").upper() == "TOPIC_BOT_MATCH":
         target_topic = initial_data.get("topic", "General Science")
         match_id = f"TOPIC_MATCH_{uuid.uuid4().hex[:8]}"
@@ -155,9 +148,6 @@ async def websocket_arena(
         asyncio.create_task(simulate_bot_game(match_id, websocket, bot_id))
         is_starter = False
     elif initial_data and initial_data.get("type", "").upper() == "VAULT_BOT_MATCH":
-=======
-    if initial_data and initial_data.get("type", "").upper() == "VAULT_BOT_MATCH":
->>>>>>> 54e60b608fdf90d033ad8adf13a3597d63cc4b10
         active_doc_ids = initial_data.get("active_doc_ids", [])
         match_id = f"VAULT_MATCH_{uuid.uuid4().hex[:8]}"
         bot_id = "VAULT_BOT"
@@ -351,12 +341,12 @@ async def websocket_arena(
             msg_type = data.get("type", "").upper()
             
             if msg_type == "ANSWER_SUBMITTED":
+                # --- ACTIVITY LOGGING ---
+                await log_user_activity(db, str(user_id))
+                
                 is_correct = data.get("is_correct", False)
-<<<<<<< HEAD
                 time_taken = data.get("time_taken", 0)
                 current_q_idx = data.get("question_idx", 0)
-=======
->>>>>>> 54e60b608fdf90d033ad8adf13a3597d63cc4b10
                 user_match_id = None
                 for m_id, m_data in manager.active_matches.items():
                     if user_id in m_data["players"]:
@@ -368,7 +358,6 @@ async def websocket_arena(
                     if is_correct:
                         match["players"][user_id]["score"] += 1
                         
-<<<<<<< HEAD
                     # --- ATOMIC INJECTION: WEAKNESS DETECTION ---
                     # If they got it wrong OR took more than 20 seconds, log it as a weakness
                     if not is_correct or time_taken > 20:
@@ -389,14 +378,11 @@ async def websocket_arena(
                         }))
                     # --- END INJECTION ---
 
-=======
->>>>>>> 54e60b608fdf90d033ad8adf13a3597d63cc4b10
                     match["players"][user_id]["answer_count"] += 1
                     
                     if match["players"][user_id]["answer_count"] >= 5:
                         match["players"][user_id]["completed"] = True
 
-<<<<<<< HEAD
                     # --- ATOMIC INJECTION: SRS CURVE UPDATE ---
                     if match.get("is_srs_match") and match.get("target_topic"):
                         topic = match["target_topic"]
@@ -427,8 +413,6 @@ async def websocket_arena(
                         )
                     # --- END INJECTION ---
 
-=======
->>>>>>> 54e60b608fdf90d033ad8adf13a3597d63cc4b10
                     for p_id in match["players"]:
                         if p_id != user_id and match["players"][p_id]["websocket"]:
                             opponent_ws = match["players"][p_id]["websocket"]
