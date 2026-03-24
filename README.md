@@ -1,4 +1,4 @@
-# 🧠 LearnSphere (Multimodal AI Companion)
+# 🧠PrepSaarthi (Multimodal AI Companion)
 
 > **An Autonomous Multimodal AI Learning Companion featuring distraction-free video processing, Indic language dubbing, and mathematically rigorous exam proctoring.**
 
@@ -108,9 +108,9 @@ Download `tiny_face_detector_model-weights_manifest.json` and `tiny_face_detecto
 ## 👥 Team
 Built with late nights and a lot of caffeine by **Team kaala khatta**.
 
-* **Rohan Das** - Full-Stack Engineering & AI Integration
-* **[Teammate 2 Name]** - Frontend & UX
-* **[Teammate 3 Name]** - Backend Architecture
+* **Rahul Sahu** 
+* **Shourya Sinha**
+* **Ashutosh Behera** 
 
 ---
 *Note: The backend is currently configured to use an instant-text testing route via `youtube-transcript-api` to avoid live stage-demo timeout risks associated with downloading raw YouTube audio.*
